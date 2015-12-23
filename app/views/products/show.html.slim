@@ -10,7 +10,7 @@
         .col-xs-4
           span.hide.price = @price
           h3.price.total_sum.text-right 
-            = as_price(@price)
+            = number_to_currency(@price)
       .row  
         .col-xs-4.presets
           p = render 'presets'

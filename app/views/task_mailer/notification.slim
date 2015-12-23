@@ -14,8 +14,6 @@ table
     th style="border: 1px solid #e7e7e7;" Товар
     th style="border: 1px solid #e7e7e7;" Цена
     th style="border: 1px solid #e7e7e7;" Сумма
-  - without_zeros = ->(v){v!=0 ? (v%v.to_i==0 ? v.to_i: v) : 0}
-  - as_price = ->(v){v!=0 ? (v%v.to_i==0 ? "#{v.to_i} руб." : "#{v} руб.") : 0}
   tr
     td style="border: 1px solid #e7e7e7;"
       = "#{@task.id}-#{l @task.created_at, format: :date_time}"
@@ -24,8 +22,8 @@ table
       small
         em= @task.description
     td style="border: 1px solid #e7e7e7;"
-      = without_zeros.call(@task.qty)
+      = @task.qty
       = @task.product.uom
-      = " * #{as_price.call(@task.subtotal)}"
+      = " * #{number_to_currency(@task.subtotal)}"
     td style="border: 1px solid #e7e7e7;"
-      = as_price.call(@task.total)
+      = number_to_currency.call(@task.total)

@@ -10,7 +10,7 @@ ul.list-group
         button.btn.btn-primary.select type="button" data-toggle="modal" data-target="##{md5(pr.tech_path)}"
           = pr.variants.select{|v| v.id==pr.selected_product_id.to_i}.first.name
         - if pr.price.present?
-          h4.pull-right = " + #{as_price(pr.price)}"
+          h4.pull-right = " + #{number_to_currency(pr.price)}"
         
       .modal id=md5(pr.tech_path) tabindex="-1" aria-labelledby=md5(pr.tech_path) role="dialog" 
         .modal-dialog role="document" 
@@ -30,9 +30,9 @@ ul.list-group
                           = form_tag(configure_product_path(@sku.product), id: "#{md5(pr.tech_path)}f#{v.id}", class: 'variantForm') do 
                             = hidden_field_tag :product_id, v.id
                             = hidden_field_tag :tech_path, pr.tech_path
-                            a.variant href='#' data-dismiss="modal" title="#{v.name} #{variant_price.present? ? as_price(variant_price) : nil}" data-target="#{md5(pr.tech_path)}f#{v.id}"
+                            a.variant href='#' data-dismiss="modal" title="#{v.name} #{variant_price.present? ? number_to_currency(variant_price) : nil}" data-target="#{md5(pr.tech_path)}f#{v.id}"
                               img src='' alt=v.name
                               p.iffytip 
                                 = v.name
-                                = " #{variant_price.present? ? as_price(variant_price) : nil}"
+                                = " #{variant_price.present? ? number_to_currency(variant_price) : nil}"
     

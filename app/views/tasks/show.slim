@@ -1,4 +1,4 @@
-h4 = "Заказ ##{@task.id}-#{l @task.created_at, format: :date_time}"
+h4 = "Task ##{@task.id}-#{l @task.created_at, format: :date_time}"
 .container-fluid
   - if @task.product.present?
     .row
@@ -15,4 +15,4 @@ h4 = "Заказ ##{@task.id}-#{l @task.created_at, format: :date_time}"
         div
           em= d
       h4
-        = as_price(@task.total)  
+        = number_to_currency(@task.total)  

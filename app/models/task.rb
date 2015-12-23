@@ -25,7 +25,6 @@ class Task < ActiveRecord::Base
   has_many :task_properties, dependent: :destroy
   has_many :neighbors, class_name: 'Task', through: :parents, source: :tasks
 
-  # validate :tasks_presence
   validates_presence_of :sku, :user, :supplier
 
   scope :by_sku, ->(s) { where(sku: s) }
@@ -43,21 +42,11 @@ class Task < ActiveRecord::Base
         TaskRelation.select(:task_id).distinct,
         Supplier.joins(:users).where(users: {id: user.id}).select(:id))}
 
-  scope :accessible_in_list_for, ->(user) {
-    accessible_to_view_by(user).
-    where.not(id: Task.joins(:tasks).
-                  accessible_to_view_by(user).
-                  select('tasks_tasks.id'))}
-
-  scope :accessible_to_accept_by, ->(user) {
-    joins(:parents).where('parents_tasks.id in (?)',
-        Task.accessible_in_list_for(user).select(:id))}
-
   aasm column: :state do
     state :initialized, initial: true
     state :planned, :after_enter => :after_plan
     state :finished, :after_enter => :after_finish
-    state :delivered, :after_enter => :after_deliver
+    state :delivered
     state :accepted
     state :rejected
 

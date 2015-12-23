@@ -10,7 +10,7 @@
               .col-xs-4.text-right
                 h4 
                   '&nbsp;
-                  = as_price(product.skus.first.sku_suppliers.first.price)
+                  = number_to_currency(product.skus.first.sku_suppliers.first.price)
 .row
   .col-xs-12
     = paginate @products
