@@ -1,0 +1,16 @@
+- @products.each_slice(3) do |line|
+  .row.product-list
+    - line.each do |product|
+      .col-sm-6.col-xs-4.product
+        a.thumbnail href=product_path(product)
+          .caption
+            .row
+              .col-xs-8
+                h4 = product.name
+              .col-xs-4.text-right
+                h4 
+                  '&nbsp;
+                  = as_price(product.skus.first.sku_suppliers.first.price)
+.row
+  .col-xs-12
+    = paginate @products

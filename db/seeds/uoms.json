@@ -1,0 +1,9 @@
+[
+  {"uom": {"name": "шт", "description":"штука"}},
+  {"uom": {"name": "кг", "description":"килограмм"}},
+  {"uom": {"name": "м", "description":"метр"}},
+  {"uom": {"name": "м2", "description":"квадратный метр"}},
+  {"uom": {"name": "л", "description":"литр"}},
+  {"uom": {"name": "лист", "description":"лист"}},
+  {"uom": {"name": "компл", "description":"комплект"}}
+]

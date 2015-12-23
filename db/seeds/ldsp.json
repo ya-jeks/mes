@@ -1,0 +1,24 @@
+[
+  {"product": {"name": "ЛДСП Ясень Шимо 454", "uom": "лист",
+    "suppliers": [{"code": "СМТ", "price": 1000, "duration": 0}]
+  }},
+  {"product": {"name": "ЛДСП Бук", "uom": "лист",
+    "suppliers": [{"code": "СМТ", "price": 1000, "duration": 0}]
+  }},
+  {"product": {"name": "ЛДСП Ольха", "uom": "лист",
+    "suppliers": [{"code": "СМТ", "price": 1000, "duration": 0}]
+  }},
+  {"product": {"name": "ЛДСП Венге", "uom": "лист",
+    "suppliers": [{"code": "СМТ", "price": 1000, "duration": 0}]
+  }},
+  {"product": {"name": "ЛДСП Белый", "uom": "лист",
+    "suppliers": [{"code": "СМТ", "price": 1000, "duration": 0}]
+  }},
+  {"part":{"name":"ЛДСП", "products": [
+    {"name": "ЛДСП Ясень Шимо 454"},
+    {"name": "ЛДСП Ольха"},
+    {"name": "ЛДСП Венге"},
+    {"name": "ЛДСП Белый"},
+    {"name": "ЛДСП Бук"}
+  ]}}
+]

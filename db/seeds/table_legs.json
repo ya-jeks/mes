@@ -1,0 +1,14 @@
+[
+  {"product": {"name": "Ножки стола белые", "uom": "компл", "suppliers": [{"code": "СМТ", "price": 400, "duration": 0}]}},
+  {"product": {"name": "Ножки стола мореные", "uom": "компл", "suppliers": [{"code": "СМТ", "price": 400, "duration": 0}]}},
+  {"product": {"name": "Ножки стола венге", "uom": "компл", "suppliers": [{"code": "СМТ", "price": 400, "duration": 0}]}},
+  {"product": {"name": "Ножки стола лак", "uom": "компл", "suppliers": [{"code": "СМТ", "price": 400, "duration": 0}]}},
+  {"product": {"name": "Ножки стола хром", "uom": "компл", "suppliers": [{"code": "СМТ", "price": 600, "duration": 0}]}},
+  {"part":{"name":"Комплект ног для стола", "products": [
+    {"name": "Ножки стола белые"},
+    {"name": "Ножки стола мореные"},
+    {"name": "Ножки стола венге"},
+    {"name": "Ножки стола лак"},
+    {"name": "Ножки стола хром"}
+  ]}}
+]

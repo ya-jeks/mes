@@ -1,0 +1,18 @@
+h4 = "Заказ ##{@task.id}-#{l @task.created_at, format: :date_time}"
+.container-fluid
+  - if @task.product.present?
+    .row
+      h5
+        = "Откуда: #{@task.supplier.address}"
+      h5
+        = "Куда: #{@task.destination_address}"
+      h5
+        'Статус:
+        span.label class="label-#{task_color(@task)}"
+          = human_task_state(@task)
+      h4= @task.product.name
+      - @task.description.split(',').each do |d|
+        div
+          em= d
+      h4
+        = as_price(@task.total)  

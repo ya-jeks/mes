@@ -1,0 +1,214 @@
+[
+  {"product": {
+    "name": "Уголок БН",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 1.1,"duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Косынка",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 6,"duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шуруп 4х16",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.14, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шуруп 4х25",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.13, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шуруп 4х30",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.13, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шуруп 2,5х25",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.1, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Крючок",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 3.7, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Евровинт",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.5, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Заглушка под евровинт",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.1, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шкант металлический",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 2.6, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Петля ломберная",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 12, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Футорка",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 1.3, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Болт М6",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.55, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Шайба М6",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.1, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Петля книжная",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 4, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Петля накладная",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 7, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Ручка",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 8, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Винт потайной",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.1, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Подпятник",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.1, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Полкодержатель",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 0.25, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Рол.направл.300,ключ",
+    "uom": "компл",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 21, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Стяжка табурета",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СФР", "price": 20, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "ДСП",
+    "uom": "лист",
+    "container": true,
+    "suppliers": [
+      {"code": "СМТ", "price": 800, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "ДСП",
+    "uom": "м2"
+  }},
+  {"product": {
+    "name": "Клей ПВА",
+    "uom": "кг",
+    "container": true,
+    "suppliers": [
+      {"code": "СМТ", "price": 58, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "ОДВП",
+    "uom": "лист",
+    "container": true,
+    "suppliers": [
+      {"code": "СМТ", "price": 320, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Бумага",
+    "uom": "м2",
+    "container": true,
+    "suppliers": [
+      {"code": "СМТ", "price": 1, "duration": 0}
+    ]
+  }}
+]

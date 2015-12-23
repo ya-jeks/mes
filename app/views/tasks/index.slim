@@ -1,0 +1,57 @@
+h4 
+  'Заказы
+  span
+    = "#{@supplier.code}: #{@supplier.address}"
+
+.well
+  = form_for :task, url: tasks_path, html: {method: 'get', class: 'form-inline'} do |f|
+    .form-group
+      label for="supplier_id"
+       = "Поставщик:"
+      '&nbsp;
+      '&nbsp;
+      = select_tag :supplier_id, options_for_select(current_user.suppliers.map{|r| ["#{r.code}: #{r.address}", r.id]}), class: 'form-control', onchange: "this.form.submit();", include_blank: true
+
+.container-fluid
+  = render 'headers'
+  = form_for :ids, url: new_plan_path, html: {method: 'get', id: 'planForm'} do |f|
+    - @tasks.each do |task|
+      .row.task class= "bg-#{task_color(task)}"
+        .col-xs-1
+          p
+            div = "#{task.id}-#{l task.created_at, format: :date}"
+            .label class="label-#{task_color(task)}"    
+              = human_task_state(task)
+        .col-xs-4
+          p
+            div.iffytip
+              = link_to task do
+                = (task.product.name)
+                div.small
+                  = task.description
+        .col-xs-2.vnd
+          p
+            div 
+              small= "#{task.subsuppliers_codes}"
+        .col-xs-1.vnd
+          p
+            div 
+              small= "#{task.destination_code}"
+        .col-xs-1.text-right.vnd
+          p
+            div
+              small= "#{task.qty} #{task.uom.name}"
+        .col-xs-2.text-right.numerator
+          p 
+            div
+              = number_to_currency(task.total)
+        .col-xs-1.text-right
+          - if TaskPolicy.new(current_user, task).plan?
+            .task-check.btn-group data-toggle="buttons"
+              label.btn.btn-primary.btn-xs
+                input type="checkbox" name="plan[task_ids][]" autocomplete="off" value=task.id
+                span.glyphicon.glyphicon-ok
+          = render 'task_actions', task: task
+
+  .row
+    .col-xs-12= paginate @tasks

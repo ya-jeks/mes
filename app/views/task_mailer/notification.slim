@@ -1,0 +1,31 @@
+p
+  'Адрес назначения:
+  '&nbsp;
+  = @task.destination_address
+p  
+  'Почта автора:
+  '&nbsp;
+  =@task.user.email
+  
+'&nbsp;
+table
+  tr
+    th style="border: 1px solid #e7e7e7;" #
+    th style="border: 1px solid #e7e7e7;" Товар
+    th style="border: 1px solid #e7e7e7;" Цена
+    th style="border: 1px solid #e7e7e7;" Сумма
+  - without_zeros = ->(v){v!=0 ? (v%v.to_i==0 ? v.to_i: v) : 0}
+  - as_price = ->(v){v!=0 ? (v%v.to_i==0 ? "#{v.to_i} руб." : "#{v} руб.") : 0}
+  tr
+    td style="border: 1px solid #e7e7e7;"
+      = "#{@task.id}-#{l @task.created_at, format: :date_time}"
+    td style="border: 1px solid #e7e7e7;"
+      div= @task.product.name
+      small
+        em= @task.description
+    td style="border: 1px solid #e7e7e7;"
+      = without_zeros.call(@task.qty)
+      = @task.product.uom
+      = " * #{as_price.call(@task.subtotal)}"
+    td style="border: 1px solid #e7e7e7;"
+      = as_price.call(@task.total)

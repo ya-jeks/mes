@@ -1,0 +1,109 @@
+[
+  {"product": {
+    "name": "Гофрокартон",
+    "uom": "лист",
+    "container": true,
+    "suppliers": [
+      {"code": "СМТ", "price": 25, "duration": 0}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.3",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.3, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.8",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.8, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.0",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.0, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.2",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.2, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.75",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.75, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.76",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.76, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.02",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.02, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 2.5",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 2.5, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Коробка 0.4",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "УПК", "price": 0, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Гофрокартон", "qty": 0.4, "uom": "м2"}
+    ]
+  }}
+]

@@ -1,0 +1,21 @@
+.product-card
+  .row
+    .col-xs-4
+      a href='#'
+        img.main src=''
+    .col-xs-8
+      .row
+        .col-xs-8
+          h3.name = @sku.product.name
+        .col-xs-4
+          span.hide.price = @price
+          h3.price.total_sum.text-right 
+            = as_price(@price)
+      .row  
+        .col-xs-4.presets
+          p = render 'presets'
+        .col-xs-8.order
+          p = render 'order'
+      .row#properties class="#{@show_comps ? '' : 'collapse'}"
+        .col-xs-12.properties
+          = render 'properties'

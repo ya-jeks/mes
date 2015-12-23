@@ -1,0 +1,64 @@
+- if @suppliers.empty?
+  h4 Нет поставщиков
+  .container-fluid
+    .row
+      .col-xs-12
+        .row
+          .well
+            a.btn.btn-primary href=new_supplier_path
+              i.fa.fa-plus.fa-lg
+              '&nbsp;
+              'Новый поставщик
+- else
+  h4 Поставщики
+  .container-fluid
+    .row
+      .col-xs-12
+        .row
+          .well
+            a.btn.btn-primary href=new_supplier_path
+              i.fa.fa-plus.fa-lg
+              '&nbsp;
+              'Новый поставщик
+        .row.supplier
+          .col-xs-2.numerator
+            p 
+              b Код
+          .col-xs-8.vlabel
+            p
+              b Адрес
+                
+        - @suppliers.each do |supplier|
+          .row.supplier
+            .col-xs-2
+              p
+                div
+                  a href=edit_supplier_path(supplier)
+                    = supplier.code
+            .col-xs-6
+              p
+                div.iffytip= link_to supplier.address, edit_supplier_path(supplier)
+            .col-xs-4.text-right
+              p
+                div
+                  a.btn.btn-danger.pointer.delSupplierModalBtn data-id=supplier.id title="Удалить" data-toggle='modal' data-target='#delSupplierModal'
+                    i.fa.fa-close.fa-lg
+                    '&nbsp;
+                    'Удалить
+
+          .modal#delSupplierModal role="dialog" aria-labelledby="delModalLabel"
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h4 Удаление поставщика
+                .modal-body
+                  input#supplierId type="hidden"
+                  'Точно убрать поставщика?
+                .modal-footer
+                  button.btn.btn-default type="button" data-dismiss="modal"
+                    'Нет
+                  button.btn.btn-primary.delSupplierBtn type="button"
+                    'Да                    
+                
+        .row
+          .col-xs-12= paginate @suppliers

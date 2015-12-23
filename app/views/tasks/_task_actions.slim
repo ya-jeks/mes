@@ -1,0 +1,20 @@
+- if l=task_actions(task) and l!={}
+  .task-check 
+    - if l.size > 1
+      .dropdown
+        button.btn.btn-xs.dropdown-toggle class="btn-#{task_color(task)}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+          i.fa.fa-bars
+          '&nbsp;
+          span.caret
+        ul.dropdown-menu
+          - l.each do |act, act_link|
+            li
+              a href=act_link title=t(act)
+                i class=task_action_icon(act)
+                '&nbsp;
+                = t(act)
+    - else
+      - l.each do |act, act_link|
+        div
+          a.btn class="btn-xs btn-#{task_action_color(act)}" href=act_link title=t(act)
+            i class=task_action_icon(act)

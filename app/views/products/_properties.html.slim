@@ -1,0 +1,38 @@
+ul.list-group
+  - @components.each do |pr|
+    li.list-group-item.property
+      h4 = "#{pr.name}:"
+      '&nbsp;
+      - if pr.selected_product_id.nil?
+        button.btn.btn-warning.select type="button" data-toggle="modal" data-target="##{md5(pr.tech_path)}"
+          '...
+      - else    
+        button.btn.btn-primary.select type="button" data-toggle="modal" data-target="##{md5(pr.tech_path)}"
+          = pr.variants.select{|v| v.id==pr.selected_product_id.to_i}.first.name
+        - if pr.price.present?
+          h4.pull-right = " + #{as_price(pr.price)}"
+        
+      .modal id=md5(pr.tech_path) tabindex="-1" aria-labelledby=md5(pr.tech_path) role="dialog" 
+        .modal-dialog role="document" 
+          .modal-content
+            .modal-header
+              button.close aria-label="Close" data-dismiss="modal" type="button" 
+                span aria-hidden="true"  &times;
+              h4#gridSystemModalLabel.modal-title = pr.name
+            .modal-body
+              .container
+                .row
+                  .col-xs-12
+                    - pr.variants.sort_by{|v| v.name}.each_slice(4) do |line|
+                      .row.variants
+                        - line.each do |v|
+                          - variant_price = pr.variants_prices.select{|vp| vp.product_id == v.id}.try(:first).try(:price)
+                          = form_tag(configure_product_path(@sku.product), id: "#{md5(pr.tech_path)}f#{v.id}", class: 'variantForm') do 
+                            = hidden_field_tag :product_id, v.id
+                            = hidden_field_tag :tech_path, pr.tech_path
+                            a.variant href='#' data-dismiss="modal" title="#{v.name} #{variant_price.present? ? as_price(variant_price) : nil}" data-target="#{md5(pr.tech_path)}f#{v.id}"
+                              img src='' alt=v.name
+                              p.iffytip 
+                                = v.name
+                                = " #{variant_price.present? ? as_price(variant_price) : nil}"
+    

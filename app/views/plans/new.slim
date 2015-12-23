@@ -1,0 +1,59 @@
+- if @plan.required_products.empty?
+  h4 Нет задач для плана
+- else
+  h4 
+    'План,
+    ' задачи:
+    = @plan.task_ids.sort.join(', ')
+
+  = render 'actions'
+  .container-fluid
+    .row
+      .col-xs-1.col-xs-offset-7.text-right
+        b
+          'Выручка:
+      .col-xs-2.text-right
+        = number_to_currency(@plan.sales)
+    .row
+      .col-xs-1.col-xs-offset-7.text-right      
+        b
+          'Затраты:
+      .col-xs-2.text-right
+        = number_to_currency(@plan.total)
+    .row
+      .col-xs-1.col-xs-offset-7.text-right
+        b
+          'Остаток:
+      .col-xs-2.text-right
+        = number_to_currency(@plan.sales - @plan.total)
+    .row
+      .col-xs-12
+        '&nbsp;
+    - @plan.required_products.each do |rp|
+      .row.task
+        .col-xs-1.iffytip
+          = rp.ids
+        .col-xs-1.iffytip
+          = rp.tech_sum
+        .col-xs-3
+          = rp.product_name
+        .col-xs-2.text-right
+          = rp.cnt
+          '&nbsp;
+          'x
+          '&nbsp;
+          = rp.qty
+          '
+          = rp.src_uom_name
+        .col-xs-1
+          span title= rp.supplier_address
+            = rp.supplier_code
+        .col-xs-2.text-right
+          = rp.result_cnt
+          '
+          - if rp.result_uom_name == rp.src_uom_name
+            = rp.src_uom_name
+          - else   
+            = "#{rp.result_uom_name}(по #{rp.rqty} #{rp.src_uom_name})"
+        .col-xs-2.text-right
+          = number_to_currency(rp.subtotal)

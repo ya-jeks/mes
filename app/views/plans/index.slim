@@ -1,0 +1,10 @@
+h4 Планы
+.container-fluid
+  - @plans.each do |plan|
+    .row.task
+      .col-xs-1 = plan.id
+      .col-xs-2 = plan.user.email
+      .col-xs-2 = plan.task_ids
+      
+  .row
+    .col-xs-12= paginate @plans

@@ -1,0 +1,32 @@
+.row.task{
+  margin-top: -1px;
+  border: 1px solid #e7e7e7;
+
+  &:hover {
+    background-color: #f7f7f7;
+  }
+
+  .numerator, .qty, .created_at, .due_date, .product, .vnd, .subtotal{
+    padding-top: 0.6em;
+  }
+}
+
+.filters{
+  border: 1px solid #e7e7e7;
+  border-top: none;
+  .cell{
+    padding-top: 0.8em;
+  }
+}
+
+.headers{
+  border: 1px solid #e7e7e7;
+  .cell{
+    padding-top: 0.6em;
+  }
+}
+
+.subtask_total{
+  font-weight: bolder;
+  padding-top: 1em;
+}

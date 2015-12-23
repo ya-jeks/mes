@@ -1,0 +1,7 @@
+.well
+  = form_for @plan, html: {class: 'form-inline'} do |f|
+    - @plan.task_ids.each do |tid|
+      = f.hidden_field :task_ids, name: 'plan[task_ids][]', value: tid
+    .text-right
+      = f.submit 'Сохранить', class: 'btn btn-primary'
+  

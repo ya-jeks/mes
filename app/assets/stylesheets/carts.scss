@@ -1,0 +1,20 @@
+.cart{
+  margin-top: -1px;
+  border: 1px solid #e7e7e7;
+  .numerator, .delLink, .qty, .subtotal{
+     padding-top: 0.6em;
+  }
+}
+.cart_total{
+  font-weight: bolder;
+  padding-top: 1em;
+}
+
+.delivery, .payment{
+  // margin-top: -1px;
+  // border: 1px solid #e7e7e7;
+}
+
+.cart_order{
+  text-align: right;
+}

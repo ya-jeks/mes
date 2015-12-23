@@ -1,0 +1,16 @@
+.row
+  .col-xs-4.col-xs-offset-4
+    h2 Вход
+
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-group
+        = f.label :email
+        = f.email_field :email, autofocus: true, class: 'form-control'
+
+      .form-group
+        = f.label 'Пароль'
+        = f.password_field :password, autocomplete: "off", class: 'form-control'
+
+      .form-group
+        = render "devise/shared/links"
+        .pull-right= f.submit "Вход", class: 'btn btn-primary'

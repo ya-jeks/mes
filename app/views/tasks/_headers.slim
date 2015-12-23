@@ -1,0 +1,37 @@
+.row.headers
+  .col-xs-1.cell
+    p 
+      b #
+  .col-xs-4.cell
+    p
+      b Продукт
+  .col-xs-2.cell
+    p
+      b Предыдущие
+  .col-xs-1.cell
+    p
+      b Следующий
+  .col-xs-1.cell.text-right
+    p 
+      b Количество
+  .col-xs-2.cell.text-right
+    p
+      b Сумма
+  .col-xs-1
+    .dropdown.tasks-menu
+      a data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+        i.fa.fa-bars
+        '&nbsp;
+        span.caret
+      ul.dropdown-menu
+        li
+          a.plan-tasks href='#' 
+            i.fa.fa-calendar.text-primary
+            '&nbsp;
+            'Запланировать
+        li.divider
+        li
+          a.destroy-tasks href='#' 
+            i.fa.fa-remove.text-danger
+            '&nbsp;
+            'Удалить

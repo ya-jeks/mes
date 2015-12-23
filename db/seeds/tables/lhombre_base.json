@@ -1,0 +1,51 @@
+[
+  {"product": {
+    "name": "Заготовка планки ломберного каркаса",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "РСП", "price": 2.8, "duration": 5}
+    ],
+    "parts": [
+      {"source": "ЛДСП", "qty": 0.0795, "uom": "м2"}
+    ]
+  }},
+  {"product": {
+    "name": "Заготовка планки ломберного каркаса со сверловкой",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СВР", "price": 0.8, "duration": 2}
+    ],
+    "parts": [
+      {"source": "Заготовка планки ломберного каркаса", "qty": 1, "uom": "шт"}
+    ]
+  }},
+  {"product": {
+    "name": "Планка ломберного каркаса",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "КРМ04", "price": 4, "duration": 0}
+    ],
+    "parts": [
+      {"source": "Кромка ПВХ 0.4мм", "qty": 1.8375, "uom": "м"},
+      {"source": "Заготовка планки ломберного каркаса со сверловкой", "qty": 1, "uom": "шт"}
+    ]
+  }},
+  {"product": {
+    "name": "Каркас ломберный",
+    "uom": "шт",
+    "container": true,
+    "suppliers": [
+      {"code": "СБР", "price": 12.2, "duration": 60}
+    ],
+    "parts": [
+      {"source": "Планка ломберного каркаса", "qty": 4, "uom": "шт"},
+      {"source": "Косынка", "qty": 4, "uom": "шт"},
+      {"source": "Шуруп 4х16", "qty": 24, "uom": "шт"},
+      {"source": "Евровинт", "qty": 4, "uom": "шт"},
+      {"source": "Заглушка под евровинт", "qty": 4, "uom": "шт"}
+    ]
+  }}
+]

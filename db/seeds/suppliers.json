@@ -1,0 +1,13 @@
+[
+  {"supplier": {"code": "СГП", "address": "Склад готовой продукции", "capacity": 144000, "sales": true}},
+  {"supplier": {"code": "СМТ", "address": "Склад материалов", "capacity": 144000}},
+  {"supplier": {"code": "СФР", "address": "Склад фурнитуры", "capacity": 144000}},
+  {"supplier": {"code": "РСП", "address": "Распиловка", "capacity": 144000}},
+  {"supplier": {"code": "ФРЗ", "address": "Фрезеровка", "capacity": 144000}},
+  {"supplier": {"code": "КРМ20", "address": "Кромка ПВХ20", "capacity": 144000}},
+  {"supplier": {"code": "КРМ04", "address": "Кромка ПВХ04", "capacity": 144000}},
+  {"supplier": {"code": "СБР", "address": "Сборка", "capacity": 144000}},
+  {"supplier": {"code": "ПРС", "address": "Пресс", "capacity": 144000}},
+  {"supplier": {"code": "УПК", "address": "Упаковка", "capacity": 144000}},
+  {"supplier": {"code": "СВР", "address": "Сверловка", "capacity": 144000}}
+]
