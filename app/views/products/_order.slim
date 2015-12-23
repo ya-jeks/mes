@@ -1,6 +1,6 @@
 .row 
   .col-xs-8.col-xs-offset-4.text-right
-    = form_for :task, url: order_product_path(@sku.product), html: {method: 'post', class: 'form-inline', id: 'orderForm'} do |f|
+    = form_for @task, html: {class: 'form-inline', id: 'orderForm'} do |f|
       - if @task.errors.any?
         #error_explanation
           h2= "#{pluralize(@task.errors.count, "error")} prohibited this group from being saved:"
@@ -8,5 +8,6 @@
             - @task.errors.full_messages.each do |msg|
               li= msg
       .form-group  
+        = f.hidden_field :sku_id, value: @sku.id
         = f.number_field :qty, min: 1, class: 'form-control qtyinput', step: 1
         = f.submit 'Заказать', class: 'btn btn-primary order-btn'

@@ -9,7 +9,7 @@ class Task
       if task_properties.empty?
         price
       else
-        price + task_properties.map(&:price).reduce(&:+)
+        price + task_properties.map(&:price).reduce(&:+)*qty
       end
     end
 

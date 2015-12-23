@@ -1,7 +1,5 @@
 h4 
-  'Заказы
-  span
-    = "#{@supplier.code}: #{@supplier.address}"
+  'Задачи
 
 .well
   = form_for :task, url: tasks_path, html: {method: 'get', class: 'form-inline'} do |f|
@@ -10,7 +8,7 @@ h4
        = "Поставщик:"
       '&nbsp;
       '&nbsp;
-      = select_tag :supplier_id, options_for_select(current_user.suppliers.map{|r| ["#{r.code}: #{r.address}", r.id]}), class: 'form-control', onchange: "this.form.submit();", include_blank: true
+      = select_tag :supplier_id, options_for_select(current_user.suppliers.map{|r| ["#{r.code}: #{r.address}", r.id]}, @supplier.id), class: 'form-control', onchange: "this.form.submit();", include_blank: true
 
 .container-fluid
   = render 'headers'

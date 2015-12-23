@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20151201090422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chosen_variants", force: :cascade do |t|
+  create_table "chosen_products", force: :cascade do |t|
     t.integer  "session_id"
     t.integer  "product_id"
     t.text     "tech_path"
@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(version: 20151201090422) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "chosen_variants", ["product_id"], name: "index_chosen_variants_on_product_id", using: :btree
-  add_index "chosen_variants", ["session_id", "tech_path", "product_id"], name: "chosen_variants_uniq_idx", unique: true, using: :btree
-  add_index "chosen_variants", ["session_id"], name: "index_chosen_variants_on_session_id", using: :btree
+  add_index "chosen_products", ["product_id"], name: "index_chosen_products_on_product_id", using: :btree
+  add_index "chosen_products", ["session_id", "tech_path", "product_id"], name: "chosen_products_uniq_idx", unique: true, using: :btree
+  add_index "chosen_products", ["session_id"], name: "index_chosen_products_on_session_id", using: :btree
 
   create_table "part_products", force: :cascade do |t|
     t.integer  "part_id",    null: false
@@ -276,7 +276,7 @@ ActiveRecord::Schema.define(version: 20151201090422) do
 
   add_index "variant_prices", ["product_id"], name: "index_variant_prices_on_product_id", using: :btree
 
-  add_foreign_key "chosen_variants", "products"
+  add_foreign_key "chosen_products", "products"
   add_foreign_key "part_products", "parts"
   add_foreign_key "part_products", "products"
   add_foreign_key "plans", "users"

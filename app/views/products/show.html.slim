@@ -16,6 +16,6 @@
           p = render 'presets'
         .col-xs-8.order
           p = render 'order'
-      .row#properties class="#{@show_comps ? '' : 'collapse'}"
+      .row#properties class="#{session['show_props'] ? '' : 'collapse'}"
         .col-xs-12.properties
           = render 'properties'

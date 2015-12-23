@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :suppliers, through: :user_suppliers
   has_many :suppliers_tasks, through: :suppliers, class_name: 'Task', source: :tasks
 
-  def sales_supplier
+  def sales_dep
     suppliers.where(sales: true).first
   end
 

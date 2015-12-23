@@ -5,7 +5,7 @@ class SkuComponents
     @sku_id, @session_id = sku_id, session_id
   end
 
-  def call
+  def data
     OpenStruct.new collection: collection,
                    summ: collection.map(&:price).map(&:to_f).reduce(&:+)
   end

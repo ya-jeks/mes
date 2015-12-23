@@ -1,7 +1,7 @@
 - if @sku.product.presets.any?
   = form_for :preset, url: preset_product_path(@sku.product), html: {method: 'post', class: 'form-inline', id: 'presetForm'} do |f|
     .input-group
-      = select :preset, :id, @sku.product.presets.map{|p| [p.name,p.id]}, {selected: @chosen_preset}, class: 'form-control', id: 'presetSelect'
+      = select :preset, :id, @sku.product.presets.map{|p| [p.name,p.id]}, {selected: (session['preset_id']||@sku.main_preset.id)}, class: 'form-control', id: 'presetSelect'
       .input-group-btn
         button.btn.btn-primary type="button" data-toggle="collapse" data-target="#properties" aria-expanded="false" aria-controls="properties"
           i.fa.fa-cogs

@@ -2,7 +2,7 @@ class Task
   module ValidationHelpers
 
     def children_delivered?
-      tasks.order(:id) == tasks.delivered.accepted.order(:id)
+      tasks.order(:id) == tasks.delivered.order(:id)
     end
 
     def tasks_presence

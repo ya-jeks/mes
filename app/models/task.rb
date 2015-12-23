@@ -29,7 +29,7 @@ class Task < ActiveRecord::Base
 
   scope :by_sku, ->(s) { where(sku: s) }
   scope :by_user, ->(u) { where(user: u) }
-  scope :by_supplier, ->(v) { where(supplier: v) }
+  scope :by_supplier, ->(v) { where(supplier: v).order('state desc, sku_id, created_at desc') }
 
   scope :top, -> {
     joins('left join task_relations tr on tr.task_id=tasks.id').
@@ -41,6 +41,16 @@ class Task < ActiveRecord::Base
         user.id,
         TaskRelation.select(:task_id).distinct,
         Supplier.joins(:users).where(users: {id: user.id}).select(:id))}
+
+  scope :accessible_in_list_for, ->(user) {
+    accessible_to_view_by(user).
+    where.not(id: Task.joins(:tasks).
+                  accessible_to_view_by(user).
+                  select('tasks_tasks.id'))}
+
+  scope :accessible_to_accept_by, ->(user) {
+    joins(:parents).where('parents_tasks.id in (?)',
+        Task.accessible_in_list_for(user).select(:id))}
 
   aasm column: :state do
     state :initialized, initial: true
@@ -64,6 +74,18 @@ class Task < ActiveRecord::Base
     end
     event :reject do
       transitions from: :delivered, to: :rejected
+    end
+  end
+
+  def build_props_from(props)
+    self.task_properties = props.map do |prop|
+      vp = VariantPrice.where(product_id: sku.product.id,
+                              variant_id: prop.product_id,
+                              tech_path: prop.tech_path).first
+
+      TaskProperty.new tech_path: prop.tech_path,
+                       product_id: prop.product_id,
+                       price: vp.present? ? vp.price : 0
     end
   end
 

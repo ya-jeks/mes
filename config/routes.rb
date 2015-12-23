@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   authenticate :user do
     resources :products, only: [:show, :index] do
       member do
-        post :order
         post :preset
         post :configure
       end
@@ -20,9 +19,6 @@ Rails.application.routes.draw do
         get :reject
       end
 
-      collection do
-        post :destroy
-      end
     end
 
     resources :plans, only: [:index, :new, :create, :show, :destroy]
