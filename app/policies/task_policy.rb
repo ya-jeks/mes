@@ -26,10 +26,10 @@ class TaskPolicy
   end
 
   def accept?
-    false #task.acceptable and Task.accessible_to_accept_by(user).include?(task)
+    false
   end
 
   def reject?
-    false #task.rejectable and Task.accessible_to_accept_by(user).include?(task)
+    false
   end
 end

@@ -2,6 +2,6 @@ class TaskMailer < ApplicationMailer
 
   def notification(user, task)
     @task = task
-    mail(to: user.email, subject: "Новый заказ для #{task.supplier.address}")
+    mail(to: user.email, subject: "New task for #{task.supplier.address}")
   end
 end

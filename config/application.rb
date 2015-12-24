@@ -42,5 +42,9 @@ module Livefac
       sender_address: %{"Exception notifier" <#{ENV['MAIL_SENDER']}>},
       exception_recipients: [ENV['ADMIN_EMAIL']]
     }
+
+    config.generators do |g|
+      g.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
   end
 end
