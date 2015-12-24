@@ -22,12 +22,6 @@ gem 'pundit'
 gem 'puma'
 gem 'aasm'
 
-group :development, :test do
-  gem 'byebug'
-  gem 'awesome_print'
-  gem 'letter_opener'
-end
-
 group :development do
   gem 'capistrano', '~> 3.4'
   gem 'capistrano-rails', '~> 1.1', require: false
@@ -37,3 +31,17 @@ group :development do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'ffaker'
+  gem 'byebug'
+  gem 'rspec-rails'
+  gem 'awesome_print'
+  gem 'letter_opener'
+  gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'database_cleaner'
+  gem 'simplecov', require: false
+end
