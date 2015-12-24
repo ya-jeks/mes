@@ -1,4 +1,4 @@
-class SkuComponents
+class Sku::Components
   attr_reader :sku_id, :session_id
 
   def initialize(sku_id:, session_id:)
@@ -6,8 +6,8 @@ class SkuComponents
   end
 
   def data
-    OpenStruct.new collection: collection,
-                   summ: collection.map(&:price).map(&:to_f).reduce(&:+)
+    OpenStruct.new properties: properties,
+                   summ: properties.map(&:price).map(&:to_f).reduce(&:+)
   end
 
   private
@@ -15,8 +15,8 @@ class SkuComponents
       @sku ||= Sku.find(sku_id)
     end
 
-    def collection
-      @collection ||= visible_collection.reduce([]){|r, pr| r << with_variants(pr); r}
+    def properties
+      @properties ||= visible_collection.reduce([]){|r, pr| r << with_variants(pr); r}
     end
 
     def visible_collection
@@ -59,5 +59,4 @@ class SkuComponents
     def variants_prices
       @variants_prices ||= VariantPrice.where(product_id: sku.product_id).order(:id)
     end
-
 end

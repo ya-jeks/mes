@@ -14,4 +14,8 @@ class Sku < ActiveRecord::Base
   def price_on(supp)
     sku_suppliers.where(supplier: supp).try(:first).try(:price).to_f
   end
+
+  def components_for(sess)
+    Components.new(sku_id: self.id, session_id: sess.id).data
+  end
 end

@@ -1,4 +1,4 @@
-class SkuComponents::Fetcher
+class Sku::Components::Fetcher
   attr_reader :sku_id, :session_id
 
   def initialize(sku_id:, session_id:)
