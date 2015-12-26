@@ -15,4 +15,19 @@ describe ProductsController, type: :controller do
     it{ expect(assigns(:products)).to eq [ss.sku.product]}
   end
 
+  describe "POST #preset" do
+    before{ post :preset, id: ss.sku.product_id}
+    it{ expect(assigns(:products)).to eq [ss.sku.product]}
+  end
+
+  describe "POST #configure" do
+    before{ post :configure, id: ss.sku.product_id}
+    it{ expect(assigns(:products)).to eq [ss.sku.product]}
+  end
+
+  describe "GET #show" do
+    before{ get :show, id: ss.sku.product_id}
+    it{ expect(assigns(:product)).to eq ss.sku.product}
+  end
+
 end
