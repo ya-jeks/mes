@@ -12,13 +12,13 @@ describe TasksController, type: :controller do
   end
 
   describe "GET #show" do
-    before{ get :show}
+    before{ get :show, id: task.id}
     it{ expect(assigns(:tasks)).to eq [task]}
   end
 
   describe "POST #create" do
-    before{ post :create}
-    it{ expect(assigns(:tasks)).to eq [task]}
+    before{ post :create, task: attributes_for(:task)}
+    it{ expect(assigns(:task)).to eq [task]}
   end
 
   describe "POST #finish" do

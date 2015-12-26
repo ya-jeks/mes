@@ -17,7 +17,7 @@ describe PlansController, type: :controller do
   end
 
   describe "POST #create" do
-    before{ post :create}
+    before{ post :create, plan: attributes_for(:plan)}
     it{ expect(assigns(:products)).to eq [ss.sku.product]}
   end
 

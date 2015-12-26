@@ -17,7 +17,7 @@ describe SuppliersController, type: :controller do
   end
 
   describe "POST #create" do
-    before{ post :create}
+    before{ post :create, supplier: attributes_for(:supplier)}
     it{ expect(assigns(:suppliers)).to eq [supplier]}
   end
 
