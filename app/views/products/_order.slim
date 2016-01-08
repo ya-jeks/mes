@@ -8,6 +8,7 @@
             - @task.errors.full_messages.each do |msg|
               li= msg
       .form-group  
+        = f.hidden_field :supplier_id, value: @sku.suppliers.first.id
         = f.hidden_field :sku_id, value: @sku.id
         = f.number_field :qty, min: 1, class: 'form-control qtyinput', step: 1
         = f.submit 'Заказать', class: 'btn btn-primary order-btn'

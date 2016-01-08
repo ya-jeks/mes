@@ -2,11 +2,15 @@ class Task
   module SupplierHelpers
 
     def subsuppliers_addresses
-      tasks_suppliers.pluck(:address).uniq.join(', ')
+      tasks_suppliers.pluck('distinct address')
     end
 
     def subsuppliers_codes
-      tasks_suppliers.pluck(:code).uniq.join(', ')
+      tasks_suppliers.pluck('distinct code')
+    end
+
+    def subsuppliers_ids
+      tasks_suppliers.pluck('distinct id')
     end
 
     def destination_address
@@ -15,6 +19,10 @@ class Task
 
     def destination_code
       parents_suppliers.first.try(:code)
+    end
+
+    def destination_id
+      parents_suppliers.first.try(:id)
     end
 
   end

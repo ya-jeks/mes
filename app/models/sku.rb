@@ -4,6 +4,7 @@ class Sku < ActiveRecord::Base
 
   has_many :sku_parts, dependent: :destroy
   has_many :sku_suppliers, dependent: :destroy
+  has_many :suppliers, -> { readonly}, through: :sku_suppliers
   has_many :presets, through: :product
 
   has_one :main_preset, through: :product, class_name: 'Preset'

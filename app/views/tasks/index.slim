@@ -2,13 +2,18 @@ h4
   'Задачи
 
 .well
-  = form_for :task, url: tasks_path, html: {method: 'get', class: 'form-inline'} do |f|
+  = search_form_for @q, url: tasks_path, html: {method: 'get', class: 'form-inline'} do |f|
     .form-group
-      label for="supplier_id"
-       = "Поставщик:"
-      '&nbsp;
-      '&nbsp;
-      = select_tag :supplier_id, options_for_select(current_user.suppliers.map{|r| ["#{r.code}: #{r.address}", r.id]}, @supplier.id), class: 'form-control', onchange: "this.form.submit();", include_blank: true
+      label for="supplier_code_eq"
+        = "Поставщик:"
+      '&nbsp;  
+      = f.select :supplier_code_eq, options_for_select(current_user.suppliers.map{|r| ["#{r.code}: #{r.address}", r.code]}, @q.supplier_code_eq), {include_blank: true}, class: 'form-control', onchange: "this.form.submit();"
+    '&nbsp;  
+    .form-group
+      label for="state_eq"
+        = "Статус:"
+      '&nbsp;  
+      = f.select :state_eq, options_for_select(TasksHelper::HUMAN_STATE.map{|k, v| [v, k]}, @q.state_eq), {include_blank: true}, class: 'form-control', onchange: "this.form.submit();"
 
 .container-fluid
   = render 'headers'
@@ -30,11 +35,14 @@ h4
         .col-xs-2.vnd
           p
             div 
-              small= "#{task.subsuppliers_codes}"
+              small
+                = task.subsuppliers_codes.map{|sc| link_to sc, tasks_path(q: {supplier_code_eq: sc})}.join(', ').html_safe
         .col-xs-1.vnd
           p
             div 
-              small= "#{task.destination_code}"
+              small
+                - if task.destination_code.present?
+                  = link_to task.destination_code, tasks_path(q: {supplier_id_eq: task.destination_id})
         .col-xs-1.text-right.vnd
           p
             div
