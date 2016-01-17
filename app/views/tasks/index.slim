@@ -21,11 +21,17 @@ h4
     - @tasks.each do |task|
       .row.task class= "bg-#{task_color(task)}"
         .col-xs-1
+          - if TaskPolicy.new(current_user, task).plan?
+            .task-check.btn-group data-toggle="buttons"
+              label.btn.btn-primary.btn-xs
+                input type="checkbox" name="plan[task_ids][]" autocomplete="off" value=task.id
+                span.glyphicon.glyphicon-ok
+        .col-xs-1
           p
             div = "#{task.id}-#{l task.created_at, format: :date}"
             .label class="label-#{task_color(task)}"    
               = human_task_state(task)
-        .col-xs-4
+        .col-xs-3
           p
             div.iffytip
               = link_to task do
@@ -52,11 +58,6 @@ h4
             div
               = number_to_currency(task.total)
         .col-xs-1.text-right
-          - if TaskPolicy.new(current_user, task).plan?
-            .task-check.btn-group data-toggle="buttons"
-              label.btn.btn-primary.btn-xs
-                input type="checkbox" name="plan[task_ids][]" autocomplete="off" value=task.id
-                span.glyphicon.glyphicon-ok
           = render 'task_actions', task: task
 
   .row
