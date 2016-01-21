@@ -1,6 +1,7 @@
 footer.footer
   .container
     p.text-muted 
-     = File.basename(Dir.getwd)
-     '&nbsp;
+      - if signed_in?
+        = "Release #{File.basename(Dir.getwd)}"
+      '&nbsp;
      
