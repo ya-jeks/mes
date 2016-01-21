@@ -7,7 +7,7 @@ class Sku::Components
 
   def data
     OpenStruct.new properties: properties,
-                   summ: properties.map(&:price).map(&:to_f).reduce(&:+)
+                   summ: properties.map(&:price).map(&:to_f).reduce(&:+).to_f
   end
 
   private
