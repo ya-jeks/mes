@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://developer:developer@localhost/livefac_dev
 
 test:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://developer:developer@localhost/livefac_tst
 
 production:
   adapter: postgresql

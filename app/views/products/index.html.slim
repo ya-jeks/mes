@@ -1,7 +1,7 @@
-- @products.each_slice(3) do |line|
+- @products.each_slice(4) do |line|
   .row.product-list
     - line.each do |product|
-      .col-sm-6.col-xs-4.product
+      .col-xs-3.product
         a.thumbnail href=product_path(product)
           .caption
             .row
