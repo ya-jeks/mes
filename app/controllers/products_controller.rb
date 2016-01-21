@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_task, only: :show
 
   def index
-    @products = current_user.sales_dep.products.page(params[:page]).per(6)
+    @products = current_user.products.page(params[:page]).per(6)
   end
 
   def preset

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :user_suppliers, dependent: :destroy
   has_many :suppliers, through: :user_suppliers
   has_many :suppliers_tasks, through: :suppliers, class_name: 'Task', source: :tasks
+  has_many :suppliers_products, through: :suppliers, class_name: 'Product', source: :products
 
   def sales_dep
     suppliers.where(sales: true).first
