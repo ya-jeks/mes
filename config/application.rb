@@ -38,7 +38,7 @@ module Livefac
     config.active_job.queue_adapter = :sidekiq
 
     config.middleware.use ExceptionNotification::Rack, email: {
-      email_prefix: "[EXC]",
+      email_prefix: "[EXC] ",
       sender_address: %{"Exception notifier" <#{ENV['MAIL_SENDER']}>},
       exception_recipients: [ENV['ADMIN_EMAIL']]
     }

@@ -4,7 +4,7 @@ namespace :db do
     on roles(:app) do
       within "#{current_path}" do
         with rails_env: :production do
-          execute :rake, "db:drop db:create db:migrate db:seed"
+          execute :rake, "db:rebuild"
         end
       end
     end
