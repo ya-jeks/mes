@@ -29,13 +29,31 @@
     .row
       .col-xs-12
         '&nbsp;
+    .row.task
+      .col-xs-1
+        b Коды
+      .col-xs-1
+        b Поставщик
+      .col-xs-2
+        b Товар
+      .col-xs-2.text-right
+        b Расход
+      .col-xs-2.text-right
+        b Остаток
+      .col-xs-2.text-right
+        b Колво
+      .col-xs-2.text-right
+        b Сумма
     - @plan.required_products.each do |rp|
       .row.task
         .col-xs-1.iffytip
           = rp.ids
-        .col-xs-1.iffytip
+        / .col-xs-1.iffytip
           = rp.tech_sum
-        .col-xs-3
+        .col-xs-1
+          span title= rp.supplier_address
+          = rp.supplier_code
+        .col-xs-2
           = rp.product_name
         .col-xs-2.text-right
           = rp.cnt
@@ -45,15 +63,20 @@
           = rp.qty
           '
           = rp.src_uom_name
-        .col-xs-1
-          span title= rp.supplier_address
-            = rp.supplier_code
+        .col-xs-2.text-right
+          = rp.free_cnt
+          '&nbsp;
+          'x
+          '&nbsp;
+          = rp.free_qty
+          '
+          = rp.src_uom_name
         .col-xs-2.text-right
           = rp.result_cnt
           '
           - if rp.result_uom_name == rp.src_uom_name
             = rp.src_uom_name
           - else   
-            = "#{rp.result_uom_name}(по #{rp.rqty} #{rp.src_uom_name})"
+            = "#{rp.result_uom_name}(по #{rp.result_qty} #{rp.src_uom_name})"
         .col-xs-2.text-right
           = number_to_currency(rp.subtotal)

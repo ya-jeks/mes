@@ -18,16 +18,18 @@ class Plan
                          src_uom_name: r['src_uom_name'].to_s,
                          cnt: r['cnt'].to_f,
                          qty: r['qty'].to_f,
+                         result_cnt: r['result_cnt'].to_f,
+                         result_qty: r['result_qty'].to_f,
+                         free_cnt: r['free_cnt'].to_f,
+                         free_qty: r['free_qty'].to_f,
                          supplier_id: r['supplier_id'].to_i,
                          supplier_code: r['supplier_code'].to_s,
                          supplier_address: r['supplier_address'].to_s,
                          result_sku_id: r['result_sku_id'].to_i,
                          result_uom_id: r['result_uom_id'].to_i,
                          result_uom_name: r['result_uom_name'].to_s,
-                         result_cnt: r['result_cnt'].to_f,
                          duration: r['duration'].to_f,
                          price: r['price'].to_f,
-                         rqty: r['rqty'].to_f,
                          subtotal: r['subtotal'].to_f
         end
     end
@@ -125,12 +127,13 @@ select rp.*,
        uv.sku_id as result_sku_id,
        uv.price,
        uv.duration,
-       r.qty as rqty,
+       r.qty as result_qty,
        case
          when rp.qty > coalesce(r.qty, 1) then rp.cnt*ceil(rp.qty/coalesce(r.qty, 1))
          when rp.qty < coalesce(r.qty, 1) then ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))
          when rp.qty = coalesce(r.qty, 1) then rp.qty*rp.cnt
        end::integer as result_cnt,
+       0 as free_cnt,
        au.uom_id as result_uom_id
 from required_products rp
 left join skus su on su.id = rp.sku_id
