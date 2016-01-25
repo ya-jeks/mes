@@ -20,8 +20,7 @@ class Plan
                          qty: r['qty'].to_f,
                          result_cnt: r['result_cnt'].to_f,
                          result_qty: r['result_qty'].to_f,
-                         free_cnt: r['free_cnt'].to_f,
-                         free_qty: r['free_qty'].to_f,
+                         free_qty: r['free_qty'],
                          supplier_id: r['supplier_id'].to_i,
                          supplier_code: r['supplier_code'].to_s,
                          supplier_address: r['supplier_address'].to_s,
@@ -105,7 +104,7 @@ select trp.row_id,
        trp.task_qty
 from tmp_required_skus trp
 group by trp.row_id, trp.parent_row_id, trp.tech_path, trp.selected_sku_id, trp.qty, trp.task_qty
-),required_products as (
+), required_products as (
 select array_agg(rp.row_id) as row_ids,
        array_agg(rp.parent_row_id) as parent_row_ids,
        rp.tech_sum,
@@ -133,7 +132,12 @@ select rp.*,
          when rp.qty < coalesce(r.qty, 1) then ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))
          when rp.qty = coalesce(r.qty, 1) then rp.qty*rp.cnt
        end::integer as result_cnt,
-       0 as free_cnt,
+       case
+         when rp.qty > coalesce(r.qty, 1) then ARRAY[rp.qty::numeric%coalesce(r.qty, 1)::numeric, rp.qty::numeric%coalesce(r.qty, 1)::numeric]
+         when rp.qty < coalesce(r.qty, 1) and rp.qty > 1 then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, r.qty-rp.qty*(rp.cnt::numeric%( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty))))-1)::numeric)]
+         when rp.qty < coalesce(r.qty, 1) and rp.qty <= 1 then ARRAY[0::float]
+         when rp.qty = coalesce(r.qty, 1) then ARRAY[0::float]
+       end as free_qty,
        au.uom_id as result_uom_id
 from required_products rp
 left join skus su on su.id = rp.sku_id
