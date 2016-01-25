@@ -133,10 +133,9 @@ select rp.*,
          when rp.qty = coalesce(r.qty, 1) then rp.qty*rp.cnt
        end::integer as result_cnt,
        case
-         when rp.qty > coalesce(r.qty, 1) then ARRAY[rp.qty::numeric%coalesce(r.qty, 1)::numeric, rp.qty::numeric%coalesce(r.qty, 1)::numeric]
-         when rp.qty < coalesce(r.qty, 1) and rp.qty > 1 then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, r.qty-rp.qty*(rp.cnt::numeric%( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty))))-1)::numeric)]
-         when rp.qty < coalesce(r.qty, 1) and rp.qty <= 1 then ARRAY[0::float]
-         when rp.qty = coalesce(r.qty, 1) then ARRAY[0::float]
+         when rp.qty > coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric, coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric]
+         when rp.qty < coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, coalesce(r.qty, 1) - (rp.cnt::numeric%(floor(coalesce(r.qty, 1)/rp.qty::numeric))::numeric)*rp.qty::numeric]
+         when rp.qty = coalesce(r.qty, 1) then ARRAY[0, 0]
        end as free_qty,
        au.uom_id as result_uom_id
 from required_products rp
