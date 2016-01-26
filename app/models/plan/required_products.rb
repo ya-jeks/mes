@@ -134,7 +134,7 @@ select rp.*,
        end::integer as result_cnt,
        case
          when rp.qty > coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric, coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric]
-         when rp.qty < coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, coalesce(r.qty, 1) - (rp.cnt::numeric%(floor(coalesce(r.qty, 1)/rp.qty::numeric))::numeric)*rp.qty::numeric]
+         when rp.qty < coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, coalesce(r.qty, 1) - rp.qty*(rp.cnt-(floor(coalesce(r.qty, 1)/rp.qty)*( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))) -1)))]
          when rp.qty = coalesce(r.qty, 1) then ARRAY[0, 0]
        end as free_qty,
        au.uom_id as result_uom_id
