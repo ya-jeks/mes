@@ -133,6 +133,8 @@ select rp.*,
          when rp.qty = coalesce(r.qty, 1) then rp.qty*rp.cnt
        end::integer as result_cnt,
        case
+       when rp.qty > 1 and r.qty is null and au.uom_id = rp.uom_id and rp.qty::numeric%1=0 then
+         null
        when rp.qty > coalesce(r.qty, 1) then
          ARRAY[ARRAY[rp.cnt, coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric]]
        when rp.qty < coalesce(r.qty, 1) and ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty))) > 1 then

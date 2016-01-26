@@ -39,9 +39,9 @@
       .col-xs-2.text-right
         b Расход
       .col-xs-2.text-right
-        b Остаток
-      .col-xs-2.text-right
         b Колво
+      .col-xs-2.text-right
+        b Остаток
       .col-xs-2.text-right
         b Сумма
     - @plan.required_products.each do |rp|
@@ -64,15 +64,13 @@
           '
           = rp.src_uom_name
         .col-xs-2.text-right
-          = rp.free_qty
-          '
-          = rp.src_uom_name
-        .col-xs-2.text-right
           = rp.result_cnt
           '
           - if rp.result_uom_name == rp.src_uom_name
             = rp.src_uom_name
           - else   
             = "#{rp.result_uom_name}(по #{rp.result_qty} #{rp.src_uom_name})"
+        .col-xs-2.text-right
+          = rp.free_qty
         .col-xs-2.text-right
           = number_to_currency(rp.subtotal)
