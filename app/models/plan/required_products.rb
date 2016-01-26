@@ -133,9 +133,12 @@ select rp.*,
          when rp.qty = coalesce(r.qty, 1) then rp.qty*rp.cnt
        end::integer as result_cnt,
        case
-         when rp.qty > coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric, coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric]
-         when rp.qty < coalesce(r.qty, 1) then ARRAY[coalesce(r.qty, 1)::numeric%rp.qty::numeric, coalesce(r.qty, 1) - rp.qty*(rp.cnt-(floor(coalesce(r.qty, 1)/rp.qty)*( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))) -1)))]
-         when rp.qty = coalesce(r.qty, 1) then ARRAY[0, 0]
+       when rp.qty > coalesce(r.qty, 1) then
+         ARRAY[ARRAY[rp.cnt, coalesce(r.qty, 1) - rp.qty::numeric%coalesce(r.qty, 1)::numeric]]
+       when rp.qty < coalesce(r.qty, 1) and ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty))) > 1 then
+         ARRAY[ARRAY[ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))-1,coalesce(r.qty, 1)::numeric%rp.qty::numeric], ARRAY[1, coalesce(r.qty, 1) - rp.qty*(rp.cnt-(floor(coalesce(r.qty, 1)/rp.qty)*( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))) -1)))]]
+       when rp.qty < coalesce(r.qty, 1) and ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty))) = 1 then
+         ARRAY[ARRAY[1, coalesce(r.qty, 1) - rp.qty*(rp.cnt-(floor(coalesce(r.qty, 1)/rp.qty)*( (ceil(rp.cnt/(floor(coalesce(r.qty, 1)/rp.qty)))) -1)))]]
        end as free_qty,
        au.uom_id as result_uom_id
 from required_products rp
