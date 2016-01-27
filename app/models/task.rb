@@ -20,9 +20,11 @@ class Task < ActiveRecord::Base
   has_many :residual_relations
   has_many :parents, class_name: 'Task', through: :task_relations
   has_many :parent_relations, class_name: 'TaskRelation', foreign_key: :parent_id, dependent: :destroy
+  has_many :value_relations, class_name: 'ResidualRelation', foreign_key: :residual_id, dependent: :destroy
   has_many :parents_suppliers, class_name: 'Supplier', through: :parents, source: :supplier
   has_many :tasks, through: :parent_relations, dependent: :destroy
   has_many :residuals, through: :residual_relations, dependent: :destroy, source: :residual
+  has_many :value_tasks, class_name: 'Task', through: :value_relations, dependent: :destroy, source: :task
   has_many :tasks_suppliers, class_name: 'Supplier', through: :tasks, source: :supplier
   has_many :task_properties, dependent: :destroy
   has_many :neighbors, class_name: 'Task', through: :parents, source: :tasks
