@@ -17,10 +17,12 @@ class Task < ActiveRecord::Base
   has_one :product, through: :sku
 
   has_many :task_relations
+  has_many :residual_relations
   has_many :parents, class_name: 'Task', through: :task_relations
   has_many :parent_relations, class_name: 'TaskRelation', foreign_key: :parent_id, dependent: :destroy
   has_many :parents_suppliers, class_name: 'Supplier', through: :parents, source: :supplier
   has_many :tasks, through: :parent_relations, dependent: :destroy
+  has_many :residuals, through: :residual_relations, dependent: :destroy, source: :residual
   has_many :tasks_suppliers, class_name: 'Supplier', through: :tasks, source: :supplier
   has_many :task_properties, dependent: :destroy
   has_many :neighbors, class_name: 'Task', through: :parents, source: :tasks
@@ -54,6 +56,7 @@ class Task < ActiveRecord::Base
 
   aasm column: :state do
     state :initialized, initial: true
+    state :future_residual
     state :planned, :after_enter => :after_plan
     state :finished, :after_enter => :after_finish
     state :delivered
@@ -74,6 +77,9 @@ class Task < ActiveRecord::Base
     end
     event :reject do
       transitions from: :delivered, to: :rejected
+    end
+    event :make_residual do
+      transitions from: :future_residual, to: :finished
     end
   end
 

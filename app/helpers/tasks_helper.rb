@@ -2,6 +2,7 @@ module TasksHelper
 
   STATE_COLORS = {
     initialized: 'default',
+    future_residual: 'default',
     planned: 'warning',
     finished: 'success',
     delivered: 'info',
@@ -29,6 +30,7 @@ module TasksHelper
 
   HUMAN_STATE= {
     initialized: 'Новый',
+    future_residual: 'Буд.остаток',
     planned: 'В плане',
     finished: 'Готов',
     delivered: 'Отправлен',

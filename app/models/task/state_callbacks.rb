@@ -6,6 +6,7 @@ class Task
     end
 
     def after_finish
+      make_residuals
       deliver! if deliverable
     end
 

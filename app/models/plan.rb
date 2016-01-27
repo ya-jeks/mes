@@ -26,6 +26,7 @@ class Plan < ActiveRecord::Base
           OpenStruct.new ids: rp.ids,
                          parent_ids: rp.parent_ids,
                          subs: [],
+                         residuals: build_residuals(rp),
                          rec: Task.new(user_id: user_id,
                                        sku_id: rp.result_sku_id,
                                        supplier_id: rp.supplier_id,
@@ -55,6 +56,7 @@ class Plan < ActiveRecord::Base
   def del_wrappers(list)
     list.map do |l|
       l.rec.tasks = l.subs.map(&:rec)
+      l.rec.residuals = l.subs.map(&:residuals).flatten.map{|r| r.supplier_id = l.rec.supplier_id; r}
       del_wrappers(l.subs)
       l.rec
     end
@@ -70,6 +72,20 @@ class Plan < ActiveRecord::Base
 
   def subs_for(rec)
     requirements.select{|r| (r.parent_ids & rec.ids).sort == rec.ids.sort}
+  end
+
+  def build_residuals(row)
+    row.residuals.map{|r| residual_to_tasks(r, row)}.flatten
+  end
+
+  def residual_to_tasks(r, row)
+    (1..r.cnt.to_i).to_a.map do
+      Task.new(user_id: user_id,
+               sku_id: row.sku_id,
+               price: 0,
+               state: :future_residual,
+               qty: r.qty.to_f)
+    end
   end
 
 end

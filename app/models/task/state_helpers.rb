@@ -25,5 +25,9 @@ class Task
       [:initialized, :rejected].include?(state.to_sym) && parents.empty?
     end
 
+    def make_residuals
+      residuals.map(&:make_residual!)
+    end
+
   end
 end

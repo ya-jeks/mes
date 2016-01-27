@@ -21,6 +21,7 @@ class Plan
                          result_cnt: r['result_cnt'].to_f,
                          result_qty: r['result_qty'].to_f,
                          free_qty: r['free_qty'],
+                         residuals: r['free_qty'].present? ? str_to_residuals(r['free_qty']) : [],
                          supplier_id: r['supplier_id'].to_i,
                          supplier_code: r['supplier_code'].to_s,
                          supplier_address: r['supplier_address'].to_s,
@@ -34,6 +35,14 @@ class Plan
     end
 
     private
+      def str_to_residuals(str)
+        residuals_strs_arr(str).map{|s| OpenStruct.new(cnt: s.split(',').first, qty: s.split(',').last)}
+      end
+
+      def residuals_strs_arr(str)
+        str.scan(/^\{(.+)\}$/).last.last.split('},').map{|e| e.gsub(/{|}/,'')}
+      end
+
       def query
         ActiveRecord::Base.send(:sanitize_sql_array, [%(
 drop table if exists tmp_required_products;

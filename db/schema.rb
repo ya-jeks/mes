@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201090422) do
+ActiveRecord::Schema.define(version: 20160126174110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(version: 20151201090422) do
   add_index "recalcs", ["sku_id", "uom_id"], name: "index_recalcs_on_sku_id_and_uom_id", unique: true, using: :btree
   add_index "recalcs", ["sku_id"], name: "index_recalcs_on_sku_id", using: :btree
   add_index "recalcs", ["uom_id"], name: "index_recalcs_on_uom_id", using: :btree
+
+  create_table "residual_relations", force: :cascade do |t|
+    t.integer  "task_id",     null: false
+    t.integer  "residual_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "residual_relations", ["residual_id"], name: "index_residual_relations_on_residual_id", using: :btree
+  add_index "residual_relations", ["task_id"], name: "index_residual_relations_on_task_id", using: :btree
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
@@ -285,6 +295,8 @@ ActiveRecord::Schema.define(version: 20151201090422) do
   add_foreign_key "product_presets", "products"
   add_foreign_key "recalcs", "skus"
   add_foreign_key "recalcs", "uoms"
+  add_foreign_key "residual_relations", "tasks"
+  add_foreign_key "residual_relations", "tasks", column: "residual_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "sku_parts", "parts"
   add_foreign_key "sku_parts", "skus"
