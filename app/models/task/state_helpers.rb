@@ -26,7 +26,9 @@ class Task
     end
 
     def make_residuals
-      residuals.map(&:make_residual!)
+      if residuals.present? and residuals.first.src.parents.planned.empty? # generates residuals only if last item produced
+        residuals.map(&:make_residual!)
+      end
     end
 
   end

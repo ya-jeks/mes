@@ -15,6 +15,8 @@ class Task < ActiveRecord::Base
   has_one :plan, through: :plan_task
   has_one :uom, through: :sku
   has_one :product, through: :sku
+  has_one :task_srcs, class_name: 'TaskSrc'
+  has_one :src, class_name: 'Task', through: :task_srcs
 
   has_many :task_relations
   has_many :residual_relations

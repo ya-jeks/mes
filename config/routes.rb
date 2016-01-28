@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     end
 
     resources :tasks, only: [:index, :create, :show, :destroy] do
+      collection do
+        post :mass_destroy
+      end
       member do
         get :finish
         get :deliver

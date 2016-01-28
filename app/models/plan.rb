@@ -23,15 +23,17 @@ class Plan < ActiveRecord::Base
 
   def requirements
     @requirements ||= required_products.map do |rp|
-          OpenStruct.new ids: rp.ids,
-                         parent_ids: rp.parent_ids,
-                         subs: [],
-                         residuals: build_residuals(rp),
-                         rec: Task.new(user_id: user_id,
-                                       sku_id: rp.result_sku_id,
-                                       supplier_id: rp.supplier_id,
-                                       price: rp.subtotal,
-                                       qty: rp.result_cnt)
+          t = Task.new(user_id: user_id,
+                       sku_id: rp.result_sku_id,
+                       supplier_id: rp.supplier_id,
+                       price: rp.subtotal,
+                       qty: rp.result_cnt)
+
+          o = OpenStruct.new(ids: rp.ids,
+                             parent_ids: rp.parent_ids,
+                             subs: [],
+                             residuals: build_residuals(rp, t),
+                             rec: t)
     end
   end
 
@@ -56,10 +58,14 @@ class Plan < ActiveRecord::Base
   def del_wrappers(list)
     list.map do |l|
       l.rec.tasks = l.subs.map(&:rec)
-      l.rec.residuals = l.subs.map(&:residuals).flatten.map{|r| r.supplier_id = l.rec.supplier_id; r}
+      l.rec.residuals = sync_suppliers(l.subs.map(&:residuals).flatten, l.rec.supplier_id)
       del_wrappers(l.subs)
       l.rec
     end
+  end
+
+  def sync_suppliers(list, supplier_id)
+    synced = list.map{|r| r.supplier_id = supplier_id; r}
   end
 
   def build_subs(list)
@@ -74,17 +80,19 @@ class Plan < ActiveRecord::Base
     requirements.select{|r| (r.parent_ids & rec.ids).sort == rec.ids.sort}
   end
 
-  def build_residuals(row)
-    row.residuals.map{|r| residual_to_tasks(r, row)}.flatten
+  def build_residuals(row, t)
+    row.residuals.map{|r| residual_to_tasks(r, row, t)}.flatten
   end
 
-  def residual_to_tasks(r, row)
+  def residual_to_tasks(r, row, src_task)
     (1..r.cnt.to_i).to_a.map do
-      Task.new(user_id: user_id,
-               sku_id: row.sku_id,
-               price: 0,
-               state: :future_residual,
-               qty: r.qty.to_f)
+      t = Task.new(user_id: user_id,
+                   sku_id: row.sku_id,
+                   price: 0,
+                   state: :future_residual,
+                   qty: r.qty.to_f)
+      t.src = src_task            
+      t
     end
   end
 

@@ -17,14 +17,14 @@ h4
 
 .container-fluid
   = render 'headers'
-  = form_for :ids, url: new_plan_path, html: {method: 'get', id: 'planForm'} do |f|
+  = form_for :ids, html: {id: 'checkedTasks'} do |f|
     - @tasks.each do |task|
       .row.task class= "bg-#{task_color(task)}"
         .col-xs-1
-          - if TaskPolicy.new(current_user, task).plan?
+          - if TaskPolicy.new(current_user, task).plan? || TaskPolicy.new(current_user, task).destroy?
             .task-check.btn-group data-toggle="buttons"
               label.btn.btn-primary.btn-xs
-                input type="checkbox" name="plan[task_ids][]" autocomplete="off" value=task.id
+                input type="checkbox" name="task_ids[]" autocomplete="off" value=task.id
                 span.glyphicon.glyphicon-ok
         .col-xs-1
           p

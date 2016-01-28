@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126174110) do
+ActiveRecord::Schema.define(version: 20160128094105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,6 +204,15 @@ ActiveRecord::Schema.define(version: 20160126174110) do
   add_index "task_relations", ["parent_id"], name: "index_task_relations_on_parent_id", using: :btree
   add_index "task_relations", ["task_id"], name: "index_task_relations_on_task_id", using: :btree
 
+  create_table "task_srcs", force: :cascade do |t|
+    t.integer  "task_id",    null: false
+    t.integer  "src_id",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "task_srcs", ["task_id", "src_id"], name: "index_task_srcs_on_task_id_and_src_id", unique: true, using: :btree
+
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "sku_id"
@@ -308,6 +317,8 @@ ActiveRecord::Schema.define(version: 20160126174110) do
   add_foreign_key "task_properties", "products"
   add_foreign_key "task_relations", "tasks"
   add_foreign_key "task_relations", "tasks", column: "parent_id"
+  add_foreign_key "task_srcs", "tasks"
+  add_foreign_key "task_srcs", "tasks", column: "src_id"
   add_foreign_key "tasks", "skus"
   add_foreign_key "tasks", "suppliers"
   add_foreign_key "tasks", "users"

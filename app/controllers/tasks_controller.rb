@@ -57,6 +57,12 @@ class TasksController < ApplicationController
     redirect_to :back
   end
 
+  def mass_destroy
+    @tasks = Task.where(id: params[:task_ids]).initialized
+    @tasks.destroy_all
+    redirect_to :back
+  end
+
   private
     def set_task
       @task = Task.accessible_to_view_by(current_user).find(params[:id])
