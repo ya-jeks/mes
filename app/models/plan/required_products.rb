@@ -30,7 +30,8 @@ class Plan
                          result_uom_name: r['result_uom_name'].to_s,
                          duration: r['duration'].to_f,
                          price: r['price'].to_f,
-                         subtotal: r['subtotal'].to_f
+                         subtotal: r['subtotal'].to_f,
+                         free_stocks_ids: r['free_stocks_ids']
         end
     end
 
@@ -113,6 +114,25 @@ select trp.row_id,
        trp.task_qty
 from tmp_required_skus trp
 group by trp.row_id, trp.parent_row_id, trp.tech_path, trp.selected_sku_id, trp.qty, trp.task_qty
+), required_skus_with_stocks as (
+select rrs.*,
+       fs.id as free_stocks_id
+from raw_required_skus rrs
+left join free_stocks fs on fs.sku_id = rrs.selected_sku_id
+                        and fs.qty >= (rrs.qty*rrs.task_qty)
+order by rrs.row_id, fs.id
+), required_skus_grouped as (
+select s.row_id,
+       s.parent_row_id,
+       s.tech_path,
+       s.tech_sum,
+       s.selected_sku_id,
+       s.qty,
+       s.task_qty,
+       array_agg(s.free_stocks_id) as free_stocks_ids
+from required_skus_with_stocks s
+group by s.row_id, s.parent_row_id, s.tech_path, s.tech_sum, s.selected_sku_id, s.qty, s.task_qty
+order by s.row_id, s.selected_sku_id
 ), required_products as (
 select array_agg(rp.row_id) as row_ids,
        array_agg(rp.parent_row_id) as parent_row_ids,
@@ -123,12 +143,13 @@ select array_agg(rp.row_id) as row_ids,
        sum(rp.task_qty) as cnt,
        rp.qty,
        uoms.id as uom_id,
-       uoms.name as src_uom_name
-from raw_required_skus rp
+       uoms.name as src_uom_name,
+       rp.free_stocks_ids
+from required_skus_grouped rp
 join skus on skus.id = rp.selected_sku_id
 join products p on p.id = skus.product_id
 join uoms on uoms.id = skus.uom_id
-group by rp.tech_sum, rp.selected_sku_id, p.name, rp.qty, uoms.id, uoms.name
+group by rp.tech_sum, rp.selected_sku_id, p.name, rp.qty, uoms.id, uoms.name, rp.free_stocks_ids
 ), result_skus as (
 select rp.*,
        uv.supplier_id,

@@ -40,8 +40,10 @@
         b Расход
       .col-xs-2.text-right
         b Кол-во
-      .col-xs-2.text-right
-        b Остаток
+      .col-xs-1.text-right
+        b Отходы
+      .col-xs-1.text-right
+        b Остатки
       .col-xs-2.text-right
         b Сумма
     - @plan.required_products.each do |rp|
@@ -70,7 +72,9 @@
             = rp.src_uom_name
           - else   
             = "#{rp.result_uom_name}(по #{rp.result_qty} #{rp.src_uom_name})"
-        .col-xs-2.text-right
+        .col-xs-1.text-right
           = rp.free_qty
+        .col-xs-1.text-right
+          = rp.free_stocks_ids
         .col-xs-2.text-right
           = number_to_currency(rp.subtotal)
