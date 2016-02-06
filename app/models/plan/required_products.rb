@@ -129,7 +129,7 @@ select s.row_id,
        s.selected_sku_id,
        s.qty,
        s.task_qty,
-       array_agg(s.free_stocks_id) as free_stocks_ids
+       array_remove(array_agg(s.free_stocks_id), null) as free_stocks_ids
 from required_skus_with_stocks s
 group by s.row_id, s.parent_row_id, s.tech_path, s.tech_sum, s.selected_sku_id, s.qty, s.task_qty
 order by s.row_id, s.selected_sku_id
