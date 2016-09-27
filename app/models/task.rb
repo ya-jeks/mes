@@ -1,3 +1,5 @@
+require 'rqrcode'
+
 class Task < ActiveRecord::Base
 
   include AASM
@@ -97,6 +99,10 @@ class Task < ActiveRecord::Base
                        product_id: prop.product_id,
                        price: vp.present? ? vp.price : 0
     end
+  end
+
+  def qrcode
+    RQRCode::QRCode.new(id.to_s).as_png
   end
 
 end

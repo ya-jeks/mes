@@ -8,3 +8,5 @@ $(document).ready ->
     $("form#checkedTasks").attr('method', 'post')
     $("form#checkedTasks").attr('action', '/tasks/mass_destroy')
     $("form#checkedTasks").submit()
+
+  $('.task-id').webuiPopover()
