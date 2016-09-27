@@ -63,6 +63,25 @@ class TasksController < ApplicationController
     redirect_to :back
   end
 
+  def process_state
+    t = Task.find(params[:id])
+    if t.may_finish?
+      t.finish!
+    elsif t.may_deliver?
+      t.deliver!
+    elsif t.may_accept?
+      t.accept!
+    else
+      t
+    end
+    Redis.current.publish("users.#{t.user_id}", {action: :update, task: t.as_json}.to_json)
+    render json: {ok: true}, status: 200
+  rescue ActiveRecord::RecordNotFound
+    render json: {error: 'Not found'}, status: 404
+  rescue AASM::InvalidTransition
+    render json: {error: t.errors.messages}, status: 422
+  end
+
   private
     def set_task
       @task = Task.accessible_to_view_by(current_user).find(params[:id])

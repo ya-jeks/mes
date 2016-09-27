@@ -2,9 +2,8 @@ doctype html
 html lang='ru'
   head
     meta charset="utf-8"
-    meta name='yandex-verification' content=''
     meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
-    title = @title.join(', ')
+    title = @title.join(' ')
     meta content="#{@description.join(', ')}" name="description"
     meta content="#{@keywords.join(', ')}" name="keywords"
     meta content="width=device-width" name="viewport"
@@ -27,8 +26,3 @@ html lang='ru'
 
     = render "shared/footer"
     
-    script type='text/javascript'
-      |(function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter = new Ya.Metrika({id:20364022, webvisor:true, clickmap:true, trackLinks:true, accurateTrackBounce:true}); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
-    noscript
-      div
-        img src="//mc.yandex.ru/watch/" style="position:absolute; left:-9999px;" alt=""
