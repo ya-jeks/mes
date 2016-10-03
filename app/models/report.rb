@@ -25,10 +25,6 @@ class Report
       {
         label: 'Зарплата',
         value: Task.ransack(tasks_id_and_parents_id_null: false).result.uniq.where(state: %w(finished delivered accepted)).where('tasks.updated_at > ?', Date.today.beginning_of_week).map(&:total).reduce(&:+)
-      },
-      {
-        label: 'Зарплата',
-        value: Task.ransack(tasks_id_and_parents_id_null: false).result.uniq.where(state: %w(finished delivered accepted)).where('tasks.updated_at > ?', Date.today.beginning_of_week).map(&:total).reduce(&:+)
       }
     ]
   end
