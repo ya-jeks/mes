@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
     resources :plans, only: [:index, :new, :create, :show, :destroy]
     resources :suppliers
+    resources :reports
   end
 
   authenticate :user, lambda { |u| u.email == ENV['ADMIN_EMAIL'] } do

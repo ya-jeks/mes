@@ -26,10 +26,10 @@ class TaskPolicy
   end
 
   def accept?
-    false
+    task.acceptable
   end
 
   def reject?
-    false
+    task.rejectable
   end
 end

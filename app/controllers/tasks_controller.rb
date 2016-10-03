@@ -37,7 +37,8 @@ class TasksController < ApplicationController
   end
 
   def accept
-    @task = Task.accessible_to_accept_by(current_user).find(params[:id])
+    @task = Task.find(params[:id])
+    # @task = Task.accessible_to_accept_by(current_user).find(params[:id])
     auth_task
 
     @task.accept!
@@ -45,7 +46,8 @@ class TasksController < ApplicationController
   end
 
   def reject
-    @task = Task.accessible_to_accept_by(current_user).find(params[:id])
+    @task = Task.find(params[:id])
+    # @task = Task.accessible_to_accept_by(current_user).find(params[:id])
     auth_task
 
     @task.reject!

@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_action :set_task, only: :show
 
   def index
-    @products = current_user.suppliers_products.order(:id).page(params[:page]).per(8)
+    @products = current_user.suppliers_products.order('id desc').page(params[:page]).per(8)
   end
 
   def preset

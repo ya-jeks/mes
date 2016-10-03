@@ -5,10 +5,10 @@
         a.thumbnail href=product_path(product)
           .caption
             .row
-              .col-xs-8
+              .col-xs-7
                 h4 = product.name
-              .col-xs-4.text-right
-                h4 
+              .col-xs-5.text-right
+                h4
                   '&nbsp;
                   = number_to_currency(product.skus.first.sku_suppliers.first.price)
 .row

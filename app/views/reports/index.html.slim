@@ -1,0 +1,7 @@
+h4 Отчет за неделю
+.container-fluid
+  - @report.lines.each do |line|
+    .row.task
+      .col-xs-3 = line[:label]
+      .col-xs-3 = line[:value]
+      
