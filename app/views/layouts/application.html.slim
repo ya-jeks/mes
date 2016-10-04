@@ -18,6 +18,8 @@ html lang='ru'
     .container.base-container
       - if signed_in? 
         = render "shared/header"
+      - else 
+        p &nbsp;
       - if notice
         = render 'shared/notice', notice: notice
       - if alert
