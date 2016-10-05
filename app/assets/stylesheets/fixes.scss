@@ -72,3 +72,7 @@ nav.navbar.navbar-default{
 }
 .btn span.glyphicon {opacity: 0;}
 .btn.active span.glyphicon {opacity: 1;}
+.cells [class^=col-] {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
