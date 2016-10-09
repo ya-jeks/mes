@@ -1,14 +1,12 @@
-h4 Отчет
+h4 
+  'Отчет за 
+  span#reportrange.pointer
+    span
+
 .container-fluid
   .row.task.cells
     .col-xs-3
       '&nbsp;
-    .col-xs-3.text-right
-      strong Сегодня
-    .col-xs-3.text-right
-      strong Эта неделя
-    .col-xs-3.text-right
-      strong  Прошлая неделя
   - @report.lines.each do |line|
     .row.task.cells
       .col-xs-3 
@@ -16,19 +14,3 @@ h4 Отчет
       .col-xs-3.text-right 
         - if val = number_to_currency(line[:value])
           = val
-          strong.text-success
-            '&nbsp;
-            '+
-      .col-xs-3.text-right 
-        - if val = number_to_currency(line[:value])
-          = val
-          strong.text-danger
-            '&nbsp;
-            '-
-      .col-xs-3.text-right 
-        - if val = number_to_currency(line[:value])
-          = val
-          strong.text-danger
-            '&nbsp;
-            '-
-        

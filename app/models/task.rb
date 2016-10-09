@@ -39,6 +39,10 @@ class Task < ActiveRecord::Base
   scope :by_user, ->(u) { where(user: u) }
   scope :by_supplier, ->(v) { where(supplier: v).order('state desc, sku_id, created_at desc') }
 
+  scope :between_dates, ->(start_date, end_date) {
+    where('tasks.updated_at between ? and ?', Date.parse(start_date), Date.parse(end_date))
+  }
+
   scope :top, -> {
     joins('left join task_relations tr on tr.task_id=tasks.id').
       where('tr.id is null')
