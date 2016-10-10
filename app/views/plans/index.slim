@@ -1,6 +1,6 @@
 h4 Планы
 .container-fluid
-  .row
+  .row.task.cells
     .col-xs-1
     .col-xs-2 Автор
     .col-xs-2 Задачи
@@ -8,13 +8,13 @@ h4 Планы
     .col-xs-2 Затраты
     .col-xs-2 Остаток
   - @plans.each do |plan|
-    .row.task
+    .row.task.cells
       .col-xs-1 = plan.id
       .col-xs-2 = plan.user.email
       .col-xs-2 = plan.task_ids
-      .col-xs-2 = plan.sales
-      .col-xs-2 = plan.total
-      .col-xs-2 = (plan.sales - plan.total)
+      .col-xs-2 = number_to_currency(plan.sales)
+      .col-xs-2 = number_to_currency(plan.total)
+      .col-xs-2 = number_to_currency(plan.sales - plan.total)
       
   .row
     .col-xs-12= paginate @plans
