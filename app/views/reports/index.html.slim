@@ -1,8 +1,9 @@
 h4 
   'Отчет за 
   span#reportrange.pointer
-    span
-
+    span 
+      = "#{@start_date} - #{@end_date}"
+      
 .container-fluid
   .row.task.cells
     .col-xs-3

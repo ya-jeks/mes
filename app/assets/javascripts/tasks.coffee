@@ -19,9 +19,6 @@ $(document).ready ->
     $('#reportrange').on 'apply.daterangepicker', (ev, picker) ->
       window.location = "/reports?start_date=#{picker.startDate.format('DD.MM.YYYY')}&end_date=#{picker.endDate.format('DD.MM.YYYY')}"
 
-    cb = (start, end) ->
-      $('#reportrange span').html start.format('DD.MM.YY') + ' - ' + end.format('DD.MM.YY')
-
     $('#reportrange').daterangepicker {
       locale:
         format: 'DD.MM.YYYY'
@@ -52,7 +49,6 @@ $(document).ready ->
           moment().subtract(1, 'month').startOf('month')
           moment().subtract(1, 'month').endOf('month')
         ]
-    }, cb
-    cb start, end
+    }
 
   init_picker()
