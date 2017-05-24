@@ -44,8 +44,10 @@
         b Отходы
       .col-xs-1.text-right
         b Остатки
-      .col-xs-2.text-right
+      .col-xs-1.text-right
         b Сумма
+      .col-xs-1.text-right
+        b Время
     - @plan.required_products.each do |rp|
       .row.task
         .col-xs-1.iffytip
@@ -83,6 +85,9 @@
         .col-xs-1.text-right
           = rp.free_stocks_ids
           ';
-        .col-xs-2.text-right
+        .col-xs-1.text-right
           = number_to_currency(rp.subtotal)
+          ';
+        .col-xs-1.text-right
+          = rp.subtotal_duration
           ';

@@ -29,6 +29,7 @@ class Plan
                          result_uom_id: r['result_uom_id'].to_i,
                          result_uom_name: r['result_uom_name'].to_s,
                          duration: r['duration'].to_f,
+                         subtotal_duration: r['subtotal_duration'].to_i,
                          price: r['price'].to_f,
                          subtotal: r['subtotal'].to_f,
                          free_stocks_ids: r['free_stocks_ids']
@@ -184,6 +185,7 @@ order by rp.sku_id
 ), res2 as (
 select ru.*,
        ru.price * ru.result_cnt as subtotal,
+       ru.duration * ru.result_cnt as subtotal_duration,
        uoms.name as result_uom_name
 from result_skus ru
 join uoms on uoms.id = ru.result_uom_id
