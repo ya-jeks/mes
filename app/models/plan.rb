@@ -17,6 +17,17 @@ class Plan < ActiveRecord::Base
     @total ||= required_products.map{|r| r.subtotal}.reduce(&:+)
   end
 
+  def duration
+    @duration ||= required_products.map{|r| r.subtotal_duration}.reduce(&:+)
+  end
+
+  def duration_str
+    mm, ss = duration.divmod(60)            #=> [4515, 21]
+    hh, mm = mm.divmod(60)           #=> [75, 15]
+    dd, hh = hh.divmod(24)           #=> [3, 3]
+    "#{dd} days, #{hh} hours, #{mm} minutes and #{ss} seconds"
+  end
+
   def sales
     @sales ||= tasks.map(&:total).reduce(&:+)
   end
@@ -91,7 +102,7 @@ class Plan < ActiveRecord::Base
                    price: 0,
                    state: :future_residual,
                    qty: r.qty.to_f)
-      t.src = src_task            
+      t.src = src_task
       t
     end
   end

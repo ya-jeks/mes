@@ -7,7 +7,7 @@
       {"source": "Пластик Hpl", "qty": 0.528, "uom": "м2"}
     ],
     "suppliers": [
-      {"code": "РСП", "price": 0, "duration": 0}
+      {"code": "РСП", "price": 0, "duration": 240}
     ]
   }},
   {"product": {
@@ -18,7 +18,7 @@
       {"source": "ДСП", "qty": 0.4945, "uom": "м2"}
     ],
     "suppliers": [
-      {"code": "РСП", "price": 2.066, "duration": 0}
+      {"code": "РСП", "price": 2.066, "duration": 120}
     ]
   }},
   {"product": {
@@ -32,7 +32,7 @@
       {"source": "Клей ПВА", "qty": 0.264, "uom": "кг"}
     ],
     "suppliers": [
-      {"code": "ПРС", "price": 7, "duration": 60}
+      {"code": "ПРС", "price": 7, "duration": 1200}
     ]
   }},
   {"product": {
@@ -43,7 +43,7 @@
       {"source": "Заготовка ломберного щита", "qty": 1, "uom": "шт"}
     ],
     "suppliers": [
-      {"code": "РСП", "price": 7.2, "duration": 10}
+      {"code": "РСП", "price": 7.2, "duration": 60}
     ]
   }},
   {"product": {
@@ -54,7 +54,7 @@
       {"source": "Ломберный щит", "qty": 1, "uom": "шт"}
     ],
     "suppliers": [
-      {"code": "ФРЗ", "price": 4.8, "duration": 10}
+      {"code": "ФРЗ", "price": 4.8, "duration": 40}
     ]
   }},
   {"product": {
@@ -66,7 +66,7 @@
       {"name": "Кромка столешницы", "source": "Кромка ПВХ 2мм", "qty": 3.08, "uom": "м"}
     ],
     "suppliers": [
-      {"code": "КРМ20", "price": 28, "duration": 120}
+      {"code": "КРМ20", "price": 28, "duration": 1200}
     ]
   }}
 ]

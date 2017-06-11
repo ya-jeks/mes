@@ -27,6 +27,12 @@
       .col-xs-2.text-right
         = number_to_currency(@plan.sales - @plan.total)
     .row
+      .col-xs-1.col-xs-offset-7.text-right
+        b
+          'Время, сек:
+      .col-xs-2.text-right
+        = @plan.duration_str
+    .row
       .col-xs-12
         '&nbsp;
     .row.task

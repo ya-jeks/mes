@@ -1,4 +1,4 @@
-u = User.new email: 'admin@example.com',
+u = User.new email: 'user@example.com',
              password: 'password',
              password_confirmation: 'password'
 u.suppliers = Supplier.all

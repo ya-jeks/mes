@@ -14,7 +14,7 @@
       {"source": "Шуруп 2,5х25", "qty": 8, "uom": "шт"}
     ],
     "suppliers": [
-      {"code": "СБР", "price": 24, "duration": 0}
+      {"code": "СБР", "price": 24, "duration": 60}
     ]
   }}
 ]

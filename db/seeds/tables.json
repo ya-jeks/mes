@@ -5,6 +5,6 @@
       {"name": "Ножки", "source": "Комплект ног для стола", "qty": 1, "uom": "компл"},
       {"source": "Коробка 2.8", "qty": 1, "uom": "шт"}
     ],
-    "suppliers": [{"code": "СГП", "price": 2380, "duration": 0}]
+    "suppliers": [{"code": "СГП", "price": 2380, "duration": 180}]
   }}
 ]

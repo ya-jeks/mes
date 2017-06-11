@@ -4,7 +4,7 @@
     "uom": "шт",
     "container": true,
     "suppliers": [
-      {"code": "РСП", "price": 2.8, "duration": 5}
+      {"code": "РСП", "price": 2.8, "duration": 10}
     ],
     "parts": [
       {"source": "ЛДСП", "qty": 0.0795, "uom": "м2"}
@@ -15,7 +15,7 @@
     "uom": "шт",
     "container": true,
     "suppliers": [
-      {"code": "СВР", "price": 0.8, "duration": 2}
+      {"code": "СВР", "price": 0.8, "duration": 15}
     ],
     "parts": [
       {"source": "Заготовка планки ломберного каркаса", "qty": 1, "uom": "шт"}
@@ -26,7 +26,7 @@
     "uom": "шт",
     "container": true,
     "suppliers": [
-      {"code": "КРМ04", "price": 4, "duration": 0}
+      {"code": "КРМ04", "price": 4, "duration": 10}
     ],
     "parts": [
       {"source": "Кромка ПВХ 0.4мм", "qty": 1.8375, "uom": "м"},
@@ -38,7 +38,7 @@
     "uom": "шт",
     "container": true,
     "suppliers": [
-      {"code": "СБР", "price": 12.2, "duration": 60}
+      {"code": "СБР", "price": 12.2, "duration": 120}
     ],
     "parts": [
       {"source": "Планка ломберного каркаса", "qty": 4, "uom": "шт"},

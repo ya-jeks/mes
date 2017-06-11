@@ -204,7 +204,7 @@ select res4.*,
        v.address as supplier_address
 from res4
 join suppliers v on v.id = res4.supplier_id
-order by res4.tech_sum, res4.supplier_id, res4.sku_id;
+order by res4.subtotal_duration, res4.tech_sum, res4.supplier_id, res4.sku_id;
           ), source_ids])
       end
   end
