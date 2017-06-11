@@ -5,6 +5,7 @@ class CreateTasks < ActiveRecord::Migration
       t.references :sku, index: true, foreign_key: true
       t.references :supplier, index: true, null: false, foreign_key: true
       t.datetime :due_date
+      t.integer :duration
       t.string :state, null: false, index: true
       t.float :price, null: false, default: 0
       t.float :qty, null: false

@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20160128094105) do
     t.integer  "sku_id"
     t.integer  "supplier_id",               null: false
     t.datetime "due_date"
+    t.integer  "duration"
     t.string   "state",                     null: false
     t.float    "price",       default: 0.0, null: false
     t.float    "qty",                       null: false

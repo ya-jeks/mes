@@ -14,6 +14,12 @@ h4
         = "Статус:"
       '&nbsp;  
       = f.select :state_eq, options_for_select(TasksHelper::HUMAN_STATE.map{|k, v| [v, k]}, @q.state_eq), {include_blank: true}, class: 'form-control', onchange: "this.form.submit();"
+    '&nbsp;  
+    .form-group
+      label for="due_date_eq"
+        = "Срок:"
+      '&nbsp;  
+      = f.date_select :due_date_eq, {include_blank: true}, class: 'form-control', onchange: "this.form.submit();"
 
 .container-fluid
   = render 'headers'
@@ -29,7 +35,10 @@ h4
         .col-xs-1
           p
             .task-id.pointer data-content="<img src='#{task.qrcode.to_data_url}'>"
+              .glyphicon.glyphicon-qrcode
+              
               = "#{task.id}-#{l task.created_at, format: :date}"
+
             .label class="label-#{task_color(task)}"    
               = human_task_state(task)
         .col-xs-3
@@ -39,7 +48,7 @@ h4
                 = (task.product.name)
                 div.small
                   = task.description
-        .col-xs-2.vnd
+        .col-xs-1.vnd
           p
             div 
               small
@@ -54,10 +63,17 @@ h4
           p
             div
               small= "#{task.qty} #{task.uom.name}"
-        .col-xs-2.text-right.numerator
+        .col-xs-1.text-right.numerator
           p 
             div
               = number_to_currency(task.total)
+        .col-xs-2.text-right.numerator
+          p 
+            div
+              = task.due_date.to_date if task.due_date.present?
+          p 
+            div
+              = task.duration
         .col-xs-1.text-right
           = render 'task_actions', task: task
 

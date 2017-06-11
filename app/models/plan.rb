@@ -38,6 +38,7 @@ class Plan < ActiveRecord::Base
                        sku_id: rp.result_sku_id,
                        supplier_id: rp.supplier_id,
                        price: rp.subtotal,
+                       duration: rp.subtotal_duration,
                        qty: rp.result_cnt)
 
           o = OpenStruct.new(ids: rp.ids,
