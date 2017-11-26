@@ -45,14 +45,14 @@ set :puma_access_log, "#{shared_path}/log/puma_error.log"
 set :puma_error_log, "#{shared_path}/log/puma_access.log"
 set :puma_role, :app
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'production'))
-set :puma_threads, [0, 4]
-set :puma_workers, 0
+set :puma_threads, [0, 1]
+set :puma_workers, 1
 set :puma_init_active_record, true
 set :puma_preload_app, true
 
 set :sidekiq_queue, ['default', 'mailers']
 set :sidekiq_processes,  1
-set :sidekiq_concurrency, 2
+set :sidekiq_concurrency, 1
 
 namespace :deploy do
 
