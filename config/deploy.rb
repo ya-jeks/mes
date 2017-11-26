@@ -51,8 +51,8 @@ set :puma_init_active_record, true
 set :puma_preload_app, true
 
 set :sidekiq_queue, ['default', 'mailers']
-set :sidekiq_processes =>  1
-set :sidekiq_concurrency => 2
+set :sidekiq_processes,  1
+set :sidekiq_concurrency, 2
 
 namespace :deploy do
 
