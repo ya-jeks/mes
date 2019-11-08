@@ -6,7 +6,7 @@ gem 'pg'
 gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'bootstrap-sass', '~> 3.3.5'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'font-awesome-sass', '~> 4.4.0'
 gem 'activerecord-session_store'
 gem 'sinatra', :require => nil
