@@ -1,17 +1,19 @@
 source 'https://rubygems.org'
 
 gem 'dotenv-rails', :require => 'dotenv/rails-now'
+gem 'sprockets-rails', '~> 3.2.1'
+gem 'sprockets', '~> 3.7.2'
 gem 'rails', '4.2.4'
-gem 'pg'
-gem 'uglifier', '>= 1.3.0'
-gem 'sass-rails', '~> 5.0'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'bootstrap-sass', '~> 3.4.1'
-gem 'font-awesome-sass', '~> 4.4.0'
+gem 'pg', '~> 0.18.4'
+gem 'uglifier'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass'
 gem 'activerecord-session_store'
 gem 'sinatra', :require => nil
 gem 'exception_notification'
-gem 'quiet_assets'
+# gem 'quiet_assets'
 gem 'jquery-rails'
 gem 'slim-rails'
 gem 'kaminari'
@@ -23,17 +25,8 @@ gem 'pundit'
 gem 'puma'
 gem 'aasm'
 
-group :development do
-  gem 'capistrano', '~> 3.4'
-  gem 'capistrano-rails', '~> 1.1', require: false
-  gem 'capistrano-rbenv', '~> 2.0', require: false
-  gem 'capistrano-sidekiq', '~> 0.5', require: false
-  gem 'capistrano3-puma', '~> 1.2', require: false
-  gem 'spring'
-end
-
 group :development, :test do
-  gem 'ffaker'
+  gem 'ffaker', '~> 2.2.0'
   gem 'byebug'
   gem 'rspec-rails'
   gem 'awesome_print'
